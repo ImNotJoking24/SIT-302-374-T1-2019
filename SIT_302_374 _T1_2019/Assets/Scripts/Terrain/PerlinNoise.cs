@@ -12,14 +12,12 @@ public class PerlinNoise : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start");
         Terrain terrain = GetComponent<Terrain>();
         terrain.terrainData = GenerateTerrain(terrain.terrainData);
     }
     // Update is called once per frame
     TerrainData GenerateTerrain(TerrainData terrainData)
     {
-        Debug.Log("generating terrain");
         terrainData.heightmapResolution = width + 1;
         terrainData.size = new Vector3(width, depth, height);
 
