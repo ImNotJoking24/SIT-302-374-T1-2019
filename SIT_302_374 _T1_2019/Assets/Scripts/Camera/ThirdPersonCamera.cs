@@ -29,12 +29,12 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void CameraMovement()
     {
-        _CurrentX += Input.GetAxis("Mouse X");
+        _CurrentX += Input.GetAxis("Mouse X") * MouseSensitivity;
         _CurrentY += Input.GetAxis("Mouse Y");
-        _CurrentY = Mathf.Clamp(_CurrentY, 1, 89); //so the y axis does not clip through ground
+        _CurrentY = Mathf.Clamp(_CurrentY * MouseSensitivity, 1, 89); //so the y axis does not clip through ground
 
         Vector3 dir = new Vector3(0, 0, -_CurrentDistance); //set distance between LookAt and camera
-        Quaternion rotation = Quaternion.Euler(_CurrentY * MouseSensitivity, _CurrentX * MouseSensitivity, 0);
+        Quaternion rotation = Quaternion.Euler(_CurrentY , _CurrentX , 0);
         transform.position = FocusOn.position + rotation * dir; //rotate camera around player
         transform.LookAt(FocusOn); //camera face player
         transform.Translate(new Vector3(1f, 1f, 0f)); //move the camera slightly to the top right so camera ray casting wont keep hitting the player
