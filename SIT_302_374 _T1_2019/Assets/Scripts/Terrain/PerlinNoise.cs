@@ -8,7 +8,7 @@ public class PerlinNoise : MonoBehaviour
     public int depth;
     public int width = 256;
     public int height = 256;
-    public float scale = 20f;
+    public float scale = 1f;
 
     void Start()
     {
@@ -34,8 +34,17 @@ public class PerlinNoise : MonoBehaviour
             {
                 float xCoord = (float) x / (float) width * scale;
                 float yCoord = (float) y / (float) height * scale;
+                float xCoord2 = (float)x / (float)width * (scale*2);
+                float yCoord2 = (float)y / (float)height * (scale*2);
+                float xCoord3 = (float)x / (float)width * (scale*4);
+                float yCoord3 = (float)y / (float)height * (scale*4);
+                float xCoord4 = (float)x / (float)width * (scale*8);
+                float yCoord4 = (float)y / (float)height * (scale*8);
 
-                heights[x, y] = Mathf.PerlinNoise(xCoord,yCoord);
+                heights[x, y] = (8.0f / 15.0f) * Mathf.PerlinNoise(xCoord, yCoord)+
+                   (4.0f / 15.0f) * Mathf.PerlinNoise(xCoord2+1000, yCoord2+1000) + 
+                    (2.0f / 15.0f) * Mathf.PerlinNoise(xCoord3 + 2000, yCoord3 + 2000)
+                    + (1.0f / 15.0f) * Mathf.PerlinNoise(xCoord4 + 3000, yCoord4 + 3000);
             }
         }
         return heights;
