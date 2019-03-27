@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    private float movementSpeed;
+    public float MovementSpeed;
     private int spotRange;
     private GameObject Player;
     private float dist;
+
+    private Rigidbody _Rb;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
         spotRange = 50;
+        _Rb = GetComponent<Rigidbody>();
+        _Rb.angularDrag = 0;
     }
 
     // Update is called once per frame
@@ -27,7 +31,11 @@ public class EnemyAI : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
             if (Physics.Raycast(objectRay, out hit))
             {
-
+                if (hit.collider.tag == "Player")
+                {
+                    Vector3 movement = new Vector3(MovementSpeed * Time.deltaTime, 0, MovementSpeed * Time.deltaTime);
+                    _Rb.transform.Translate(movement); //move towards the player
+                }
             }
             else
             {
