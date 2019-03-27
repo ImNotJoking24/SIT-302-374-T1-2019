@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerTransform : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public Transform Face; //camera looks on to face object, and the body of the character follows the face object on wasd input
     public float MoveSpeed;
