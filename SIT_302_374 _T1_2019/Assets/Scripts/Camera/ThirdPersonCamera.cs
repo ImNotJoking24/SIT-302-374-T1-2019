@@ -22,7 +22,7 @@ public class ThirdPersonCamera : MonoBehaviour
 
     private void Update()
     {
-        //CameraZooming();
+        CameraZooming();
         CameraMovement();
         CameraAiming();
     }
@@ -60,34 +60,48 @@ public class ThirdPersonCamera : MonoBehaviour
         }
     }
 
-    //private void CameraZooming() //FIX THIS, camera won't stop stuttering when zoomed in at a specific angle, the camera is meant to zoom in so the player stays in the picture
-    //{
-    //    RaycastHit hitFront, hitBack;
-    //    Ray frontRay = new Ray(transform.position, FocusOn.position-transform.position);
-    //    Ray backRay = new Ray(transform.position, -1 * (FocusOn.position - transform.position));
-    //    //Debug.DrawRay(transform.position, FocusOn.position - transform.position, Color.black);
-    //    //Debug.DrawRay(transform.position, -1*(FocusOn.position - transform.position), Color.blue);
-    //    if (Physics.Raycast(frontRay, out hitFront))
-    //    {
-    //        if (hitFront.collider.tag != "Player")
-    //        {
-    //            _CurrentDistance -= 0.1f;
-    //        }
-    //        else
-    //        {
-    //            if (Physics.Raycast(backRay, out hitBack))
-    //            {
-    //                if (hitBack.distance > Distance)
-    //                {
-    //                    _CurrentDistance += 0.1f;
-    //                }
-    //            }
-    //            else if (_CurrentDistance < Distance)
-    //            {
-    //                _CurrentDistance += 0.1f;
-    //            }
+    private void CameraZooming() //FIX THIS, camera won't stop stuttering when zoomed in at a specific angle, the camera is meant to zoom in so the player stays in the picture
+    {
+        RaycastHit hitFront, hitBack;
+        Ray frontRay = new Ray(transform.position, FocusOn.position-transform.position);
+        Ray backRay = new Ray(FocusOn.position, this.transform.position);
+        Debug.DrawRay(transform.position, FocusOn.position - transform.position, Color.black);
+        Debug.DrawRay(transform.position, -1*(FocusOn.position - transform.position), Color.blue);
+        //if (Physics.Raycast(frontRay, out hitFront))
+        //{
+        //   if (hitFront.collider.tag != "Player")
+        //    {
+        //        _CurrentDistance -= 0.1f;
+        //    }
+        //    else
+        //    {
+        //        if (Physics.Raycast(backRay, out hitBack))
+        //        {
+        //            if (hitBack.distance > Distance)
+        //            {
+        //                _CurrentDistance += 0.1f;
+        //            }
+        //        }
+        //        else if (_CurrentDistance < Distance)
+        //        {
+        //            _CurrentDistance += 0.1f;
+        //        }
+        //    }
+        //}
 
-    //        }
-    //    }
-    //}
+            if (Physics.Raycast(backRay, out hitBack))
+            {
+                if (hitBack.collider.tag != "MainCamera")
+                {
+                    _CurrentDistance = Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.5f, Distance);
+                    Debug.Log("Name: " + hitBack.collider.name + " Point: " + hitBack.point + " Distance: " + hitBack.distance + "Current:" + _CurrentDistance);
+                }
+                
+            }
+            else
+            {
+                _CurrentDistance = Distance;
+            }
+            
+    }
 }
