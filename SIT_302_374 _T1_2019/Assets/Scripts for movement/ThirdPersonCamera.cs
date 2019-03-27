@@ -45,7 +45,7 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         RaycastHit hit;
         Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
         if (Physics.Raycast(objectRay, out hit))
         {
             LookingAtGameObject = hit.collider.gameObject;
