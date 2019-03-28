@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float MovementSpeed; //between 0 and 1
+    private float MovementSpeed; //between 0 and 1
     private int spotRange;
     private GameObject Player;
     private float dist;
@@ -18,9 +18,11 @@ public class EnemyAI : MonoBehaviour
         spotRange = 50;
         _Rb = GetComponent<Rigidbody>();
         _Rb.angularDrag = 0;
+        FirstEnemy _fe = GetComponent<FirstEnemy>();
+        MovementSpeed = _fe.enemyStats.MovementSpeed;
     }
 
-    // Update is called once per frame
+    // Update is calle  d once per frame
     void FixedUpdate()
     {
         NewEnemyDetection();
