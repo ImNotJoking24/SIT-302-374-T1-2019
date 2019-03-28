@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3277717725843819521}
   - component: {fileID: 3277717725843819526}
+  - component: {fileID: 304380366}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -44,3 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Base: {fileID: 11400000, guid: 95bcbe50c3ed99f4abc61123476ce707, type: 2}
+--- !u!136 &304380366
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277717725843819527}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}

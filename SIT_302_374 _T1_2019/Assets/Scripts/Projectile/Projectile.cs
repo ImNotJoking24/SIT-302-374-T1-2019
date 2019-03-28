@@ -35,15 +35,22 @@ public class Projectile : MonoBehaviour
         transform.LookAt(camera.LookingAtPoint);
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         _PrimitiveShape.transform.position = this.transform.position;
         _PrimitiveShape.transform.rotation = this.transform.rotation;
         TimeActive -= Time.deltaTime;
-        Debug.Log(TimeActive);
         if (TimeActive <= 0)
+        {
+            Destroy(_PrimitiveShape); //change this when model is available
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag != "Player")
         {
             Destroy(_PrimitiveShape); //change this when model is available
             Destroy(gameObject);
