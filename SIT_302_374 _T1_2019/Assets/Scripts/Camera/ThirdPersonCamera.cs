@@ -60,7 +60,7 @@ public class ThirdPersonCamera : MonoBehaviour
         }
     }
 
-    private void CameraZooming() //FIX THIS, camera won't stop stuttering when zoomed in at a specific angle, the camera is meant to zoom in so the player stays in the picture
+    private void CameraZooming() 
     {
         RaycastHit hitBack;
         Ray frontRay = new Ray(transform.position, FocusOn.position - transform.position);
@@ -93,7 +93,8 @@ public class ThirdPersonCamera : MonoBehaviour
             {
                 if (hitBack.collider.tag != "MainCamera")
                 {
-                    _CurrentDistance = Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.01f, Distance);
+                    //creates a new distance from ray casting. clamps the distance between 0.01 and maxDist. Linear interpolations to create smooth motion
+                    _CurrentDistance = Mathf.Lerp(_CurrentDistance, Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.01f, Distance), 0.9f);
                     Debug.Log("Name: " + hitBack.collider.name + " Point: " + hitBack.point + " Distance: " + hitBack.distance + "Current: " + _CurrentDistance);
                 }
                 
