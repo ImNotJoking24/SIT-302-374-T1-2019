@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
                 if (hit.collider.tag == "Player" && _CanMove == true)
                 {
                     transform.LookAt(hit.collider.gameObject.transform); //look at player
-                    Vector3 movement = Vector3.forward * MovementSpeed; //move forward
+                    Vector3 movement = Vector3.forward * MovementSpeed * Time.deltaTime; //move forward
                     _Rb.transform.Translate(movement); //move towards the player
                 }
             }
