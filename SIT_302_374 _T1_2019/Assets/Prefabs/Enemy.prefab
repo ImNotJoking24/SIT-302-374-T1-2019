@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 6131632489824672321}
   - component: {fileID: 6131632489824672322}
   - component: {fileID: 6131632489824672323}
-  - component: {fileID: 6131632489824672348}
+  - component: {fileID: 5947660813808405693}
+  - component: {fileID: 3676683995268178304}
   - component: {fileID: 6131632489824672349}
   - component: {fileID: 6131632489824672350}
   - component: {fileID: 6131632489824672351}
@@ -81,7 +82,20 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &6131632489824672348
+--- !u!114 &5947660813808405693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131632489824672344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae3cf899eb35564dab38bab8f3335a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 3b25c1a99c98ccb4cbc2ad5f013b9bd2, type: 2}
+--- !u!114 &3676683995268178304
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022a8843671f48142a445089a0551bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 0.5
+  MovementSpeed: 0
 --- !u!65 &6131632489824672349
 BoxCollider:
   m_ObjectHideFlags: 0
