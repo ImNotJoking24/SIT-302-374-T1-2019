@@ -12,6 +12,16 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
+        CheckCanShoot();
+    }
+
+    private void LateUpdate()
+    {
+        Shoot();
+    }
+
+    private void CheckCanShoot()
+    {
         _CanShootTimer += Time.deltaTime;
         if (_CanShootTimer >= Type.RechargeTimer)
         {
@@ -19,14 +29,15 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    private void LateUpdate()
+    private void Shoot()
     {
         float fire = Input.GetAxisRaw("Fire1");
         if (fire == 1 && Projectile != null && _CanShoot == true)
         {
             _CanShoot = false;
             _CanShootTimer = 0;
-            Instantiate(Projectile, transform.position + new Vector3(0f, 0f, 1f), transform.rotation);
+            Instantiate(Projectile, transform.position, transform.rotation);
+            Debug.Log(gameObject.name);
         }
     }
 }

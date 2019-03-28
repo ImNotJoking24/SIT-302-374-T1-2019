@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Test push, delete this comment
 [CreateAssetMenu(fileName ="New Projectile")]
 public class ProjectileScriptableObject : ScriptableObject
 {
