@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal"); //get A,W keys
         float vertical = Input.GetAxisRaw("Vertical"); //get W, S keys
         float jump = Input.GetAxisRaw("Jump"); //get <Space> key
+        float fire = Input.GetAxisRaw("Fire1");
 
         //jump mechanics
         if (jump == 1 && _CanJump == true) 
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //movement mechanics
-        if (vertical != 0 || horizontal != 0) //update rotation of the character when WASD is pressed
+        if (vertical != 0 || horizontal != 0 || fire == 1) //update rotation of the character when WASD is pressed
         {
             transform.eulerAngles = new Vector3(0, CameraFace.transform.eulerAngles.y, 0);
         }
