@@ -7,14 +7,13 @@ public class PlayerController : MonoBehaviour
     public float JumpHeight; //jumping force of the player
     public float MovementSpeed; //movement speed of the player
     public Transform CameraFace; //drag child object onto here, need it for camera movement
-
-    private Rigidbody _Rb;
-    private bool _CanJump = true;
+    bool _CanJump = false;
+    Rigidbody _Rb;
 
     private void Start()
     {
         _Rb = GetComponent<Rigidbody>();
-        _Rb.angularDrag = 0;
+        _Rb.angularDrag = 0f;
     }
 
     private void FixedUpdate()
@@ -31,8 +30,8 @@ public class PlayerController : MonoBehaviour
         //jump mechanics
         if (jump == 1 && _CanJump == true) 
         {
-            _CanJump = false;
             _Rb.AddForce(new Vector3(0f, JumpHeight, 0f));
+            _CanJump = false;
         }
 
         //movement mechanics
@@ -46,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground") //reset jumping once the player touches the ground
+        if(collision.gameObject.CompareTag("Ground"))
         {
             _CanJump = true;
         }
