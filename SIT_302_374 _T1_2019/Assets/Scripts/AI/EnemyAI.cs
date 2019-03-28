@@ -8,7 +8,6 @@ public class EnemyAI : MonoBehaviour
     private int spotRange;
     private GameObject Player;
     private float dist;
-    private bool _CanMove = false;
 
     private Rigidbody _Rb;
     // Start is called before the first frame update
@@ -21,7 +20,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         if (dist < spotRange)
@@ -32,7 +31,7 @@ public class EnemyAI : MonoBehaviour
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
             if (Physics.Raycast(objectRay, out hit))
             {
-                if (hit.collider.tag == "Player" && _CanMove == true)
+                if (hit.collider.tag == "Player")
                 {
                     Vector3 movement = new Vector3(MovementSpeed * Time.deltaTime, 0, MovementSpeed * Time.deltaTime);
                     _Rb.transform.Translate(movement); //move towards the player
@@ -42,21 +41,6 @@ public class EnemyAI : MonoBehaviour
             {
                
             }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            _CanMove = true;
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            _CanMove = false;
         }
     }
 }
