@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public float MovementSpeed;
+    public float MovementSpeed; //between 0 and 1
     private int spotRange;
     private GameObject Player;
     private float dist;
@@ -23,6 +23,36 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        NewEnemyDetection();
+    }
+
+    private void NewEnemyDetection()
+    {
+        dist = Vector3.Distance(this.transform.position, Player.transform.position);
+        if (dist < spotRange)
+        {
+            this.transform.LookAt(Player.transform);
+            RaycastHit hit;
+            Ray objectRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward));
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.red);
+            if (Physics.Raycast(objectRay, out hit))
+            {
+                if (hit.collider.tag == "Player" && _CanMove == true)
+                {
+                    transform.LookAt(hit.collider.gameObject.transform); //look at player
+                    Vector3 movement = Vector3.forward * MovementSpeed; //move forward
+                    _Rb.transform.Translate(movement); //move towards the player
+                }
+            }
+            else
+            {
+
+            }
+        }
+    }
+
+    private void EnemyDetection()
+    {
         dist = Vector3.Distance(this.transform.position, Player.transform.position);
         if (dist < spotRange)
         {
@@ -40,7 +70,7 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-               
+
             }
         }
     }
