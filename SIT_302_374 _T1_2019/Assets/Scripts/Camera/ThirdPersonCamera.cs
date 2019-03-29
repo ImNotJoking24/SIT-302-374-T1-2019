@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
+    //To access this class in another script,
+    //type this:
+    //ThirdPersonCamera camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<ThirdPersonCamera>();
+    //camera.LookingAtPoint - to get the Vector3 point where the crosshair is pointing
+    //camera.LookingAtDistance - to get the float distance where the crosshair is pointing
+    //Uncomment line 62 Debug.Log(...) if needed
+
     public Transform FocusOn;
     public float Distance;
     public GameObject LookingAtGameObject { get; private set; } //to allow player to interact with object that the camera is looking at (pick up object)
     public Vector3 LookingAtPoint { get; private set; } //allow player to interact with object that the camera is looking at (shooting)
     public float LookingAtDistance { get; private set; } //allow player to interact with object that the camera is looking at (calculate distance)
+    public GameObject LookingAtObject { get; private set; }
     public float MouseSensitivity;
 
     private float _CurrentX = 0.0f;
@@ -51,6 +59,7 @@ public class ThirdPersonCamera : MonoBehaviour
             LookingAtGameObject = hit.collider.gameObject;
             LookingAtPoint = hit.point;
             LookingAtDistance = hit.distance;
+            LookingAtGameObject = hit.collider.gameObject;
             //Debug.Log("Name: " + hit.collider.name + " Point: " + hit.point + " Distance: " + hit.distance);
         }
         else
@@ -67,42 +76,21 @@ public class ThirdPersonCamera : MonoBehaviour
         Ray backRay = new Ray(FocusOn.position, this.transform.position - FocusOn.position);
         Debug.DrawRay(FocusOn.position, this.transform.position - FocusOn.position, Color.black);
         Debug.DrawRay(transform.position, -1*(FocusOn.position - transform.position), Color.blue);
-        //if (Physics.Raycast(frontRay, out hitFront))
-        //{
-        //   if (hitFront.collider.tag != "Player")
-        //    {
-        //        _CurrentDistance -= 0.1f;
-        //    }
-        //    else
-        //    {
-        //        if (Physics.Raycast(backRay, out hitBack))
-        //        {
-        //            if (hitBack.distance > Distance)
-        //            {
-        //                _CurrentDistance += 0.1f;
-        //            }
-        //        }
-        //        else if (_CurrentDistance < Distance)
-        //        {
-        //            _CurrentDistance += 0.1f;
-        //        }
-        //    }
-        //}
 
-            if (Physics.Raycast(backRay, out hitBack))
+        if (Physics.Raycast(backRay, out hitBack))
+        {
+            if (hitBack.collider.tag != "MainCamera")
             {
-                if (hitBack.collider.tag != "MainCamera")
-                {
-                    //creates a new distance from ray casting. clamps the distance between 0.01 and maxDist. Linear interpolations to create smooth motion
-                    _CurrentDistance = Mathf.Lerp(_CurrentDistance, Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.01f, Distance), 0.9f);
-                    //Debug.Log("Name: " + hitBack.collider.name + " Point: " + hitBack.point + " Distance: " + hitBack.distance + "Current: " + _CurrentDistance);
-                }
+                //creates a new distance from ray casting. clamps the distance between 0.01 and maxDist. Linear interpolations to create smooth motion
+                _CurrentDistance = Mathf.Lerp(_CurrentDistance, Mathf.Clamp((Vector3.Distance(hitBack.point, FocusOn.transform.position) - 2), 0.01f, Distance), 0.9f);
+                //Debug.Log("Name: " + hitBack.collider.name + " Point: " + hitBack.point + " Distance: " + hitBack.distance + "Current: " + _CurrentDistance);
+            }
                 
-            }
-            else
-            {
-                _CurrentDistance = Distance;
-            }
+        }
+        else
+        {
+            _CurrentDistance = Distance;
+        }
             
     }
 }
