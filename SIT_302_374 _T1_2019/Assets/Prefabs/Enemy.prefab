@@ -107,7 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 022a8843671f48142a445089a0551bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   MovementSpeed: 0
+=======
+  MovementSpeed: 5
+>>>>>>> refs/remotes/origin/Main_Working_Branch
 --- !u!65 &6131632489824672349
 BoxCollider:
   m_ObjectHideFlags: 0
