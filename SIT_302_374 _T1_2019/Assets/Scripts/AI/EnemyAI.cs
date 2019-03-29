@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//BRad was here
+using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -10,6 +10,8 @@ public class EnemyAI : MonoBehaviour
     private GameObject Player;
     private float dist;
     private bool _CanMove = false;
+
+    NavMeshAgent agent;
 
     private Rigidbody _Rb;
     // Start is called before the first frame update
@@ -21,6 +23,8 @@ public class EnemyAI : MonoBehaviour
         _Rb.angularDrag = 0;
         FirstEnemy _fe = GetComponent<FirstEnemy>();
         MovementSpeed = _fe.enemyStats.MovementSpeed;
+
+        agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is calle  d once per frame
@@ -51,6 +55,8 @@ public class EnemyAI : MonoBehaviour
             {
 
             }
+            //agent.enabled = true;
+            //agent.SetDestination(Player.transform.position);
         }
     }
 
