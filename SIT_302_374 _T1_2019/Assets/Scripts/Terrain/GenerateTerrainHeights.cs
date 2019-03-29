@@ -53,12 +53,14 @@ public class GenerateTerrainHeights : MonoBehaviour
     }
     public float[,] AddRiver(float[,] heights)
     {
-        RiverPoint[] startEnd = GetRiverPath(heights);
+        RiverPoint[] startEnd = GetRiverStartEnd(heights);
         Debug.Log("startX: " + startEnd[0].x + " startY: " + startEnd[0].y + " endX: " + startEnd[1].x + " endY: " + startEnd[1].y + " heightStart: " + startEnd[0].height + " heightEnd: " + startEnd[1].height);
+        heights[startEnd[0].x, startEnd[0].y] = 0;
+        heights[startEnd[1].x, startEnd[1].y] = 0;
         return heights;
     }
 
-    public RiverPoint[] GetRiverPath(float[,] heights)
+    public RiverPoint[] GetRiverStartEnd(float[,] heights)
     {
         //a pairing of the start and end point to be returned by this function
         //only works if terrain is square
@@ -88,7 +90,7 @@ public class GenerateTerrainHeights : MonoBehaviour
         {
             edgeNum = 0;
         }
-        else if (startPoint.x == heights.Length - 1)
+        else if (startPoint.x == heights.GetLength(0) - 1)
         {
             edgeNum = 2;
         }
@@ -96,7 +98,7 @@ public class GenerateTerrainHeights : MonoBehaviour
         {
             edgeNum = 1;
         }
-        else if (startPoint.y == heights.LongLength - 1)
+        else if (startPoint.y == heights.GetLength(1) - 1)
         {
             edgeNum = 3;
         }
@@ -110,17 +112,20 @@ public class GenerateTerrainHeights : MonoBehaviour
                 for (int i = 0; i < heights.GetLength(0); i++)
                 {
                     oppositeEdges.Add(new RiverPoint(heights[heights.GetLength(0)-1, i], heights.GetLength(0) - 1, i));
+                    Debug.Log("case 2");
                 }
                 break;
             case 3:
                 for (int i = 0; i < heights.GetLength(0); i++)
                 {
+                    Debug.Log("case 3");
                     oppositeEdges.Add(new RiverPoint(heights[i, heights.GetLength(0) - 1], i, heights.GetLength(0) - 1));
                 }
                 break;
             case 0:
                 for (int i = 0; i < heights.GetLength(0); i++)
                 {
+                    Debug.Log("case 0");
                     oppositeEdges.Add(new RiverPoint(heights[0, i], 0, i));
                 }
                 break;
@@ -128,6 +133,7 @@ public class GenerateTerrainHeights : MonoBehaviour
                 
                 for (int i = 0; i < heights.GetLength(0); i++)
                 {
+                    Debug.Log("Case 1");
                     oppositeEdges.Add(new RiverPoint(heights[i, 0], i, 0));
                 }
                 break;
