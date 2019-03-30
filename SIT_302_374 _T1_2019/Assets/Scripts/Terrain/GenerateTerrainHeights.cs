@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,16 +49,26 @@ public class GenerateTerrainHeights : MonoBehaviour
                     + (1.0f / 15.0f) * Mathf.PerlinNoise(xCoord4 + 3000, yCoord4 + 3000);
             }
         }
-        heights = AddRiver(heights);
+        //heights = AddRiver(heights);
         return heights;
     }
     public float[,] AddRiver(float[,] heights)
     {
         RiverPoint[] startEnd = GetRiverStartEnd(heights);
+        List<RiverPoint> path = getRiverPath(startEnd);
         Debug.Log("startX: " + startEnd[0].x + " startY: " + startEnd[0].y + " endX: " + startEnd[1].x + " endY: " + startEnd[1].y + " heightStart: " + startEnd[0].height + " heightEnd: " + startEnd[1].height);
         heights[startEnd[0].x, startEnd[0].y] = 0;
         heights[startEnd[1].x, startEnd[1].y] = 0;
         return heights;
+    }
+
+    private List<RiverPoint> getRiverPath(RiverPoint[] startEnd)
+    {
+        //big wip
+        //need to use a* pathfinding algorithm to generate path using heights as heuristics as opposed to distance to goal.
+        List<RiverPoint> openSet = new List<RiverPoint>();
+        openSet.Add(startEnd[0]);
+        throw new NotImplementedException();
     }
 
     public RiverPoint[] GetRiverStartEnd(float[,] heights)
@@ -82,7 +93,7 @@ public class GenerateTerrainHeights : MonoBehaviour
         edgePoints.Sort(sorter);
 
         //pick random from highest 3/5th
-        RiverPoint startPoint = edgePoints[(int)Mathf.Floor(Random.Range(0, Mathf.Floor(edgePoints.Count * 3 / 5)))];
+        RiverPoint startPoint = edgePoints[(int)Mathf.Floor(UnityEngine.Random.Range(0, Mathf.Floor(edgePoints.Count * 3 / 5)))];
         startEnd[0] = startPoint;
         //determine edge of chosen point
         int edgeNum = 0;
@@ -141,7 +152,7 @@ public class GenerateTerrainHeights : MonoBehaviour
         }
         oppositeEdges.Sort(sorter);
         //pick lowest 1/5th value at random for endpoint
-        RiverPoint endPoint = oppositeEdges[(int)Mathf.Floor(Random.Range(Mathf.Floor(oppositeEdges.Count * 4 / 5), oppositeEdges.Count - 1))];
+        RiverPoint endPoint = oppositeEdges[(int)Mathf.Floor(UnityEngine.Random.Range(Mathf.Floor(oppositeEdges.Count * 4 / 5), oppositeEdges.Count - 1))];
         startEnd[1] = endPoint;
         return startEnd;
     }
