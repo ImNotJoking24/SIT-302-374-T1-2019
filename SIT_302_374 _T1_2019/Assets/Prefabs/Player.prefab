@@ -45,7 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Projectile: {fileID: 3277717725843819526, guid: d0ce5b35366371b42967c1bb02c1a5fe,
     type: 3}
-  Type: {fileID: 11400000, guid: 95bcbe50c3ed99f4abc61123476ce707, type: 2}
 --- !u!1 &3541180665251078048
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
-  ProjectileAbility: {fileID: 11400000, guid: 6b8548e4fc96b7b4c8222a848564ca40, type: 2}
+  ProjectileAbility: {fileID: 11400000, guid: 95bcbe50c3ed99f4abc61123476ce707, type: 2}
 --- !u!114 &3541180666912455383
 MonoBehaviour:
   m_ObjectHideFlags: 0

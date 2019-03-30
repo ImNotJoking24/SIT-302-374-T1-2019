@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public Projectile Projectile;
-    public ProjectileScriptableObject Type;
+    private ProjectileScriptableObject _Type;
 
     private bool _CanShoot = true;
     private float _CanShootTimer = 0;
 
     private void Update()
     {
+        _Type = gameObject.GetComponentInParent<PlayerStat>().ProjectileAbility;
         CheckCanShoot();
     }
 
@@ -23,7 +24,7 @@ public class PlayerShoot : MonoBehaviour
     private void CheckCanShoot()
     {
         _CanShootTimer += Time.deltaTime;
-        if (_CanShootTimer >= Type.RechargeTimer)
+        if (_CanShootTimer >= _Type.RechargeTimer)
         {
             _CanShoot = true;
         }
@@ -37,7 +38,6 @@ public class PlayerShoot : MonoBehaviour
             _CanShoot = false;
             _CanShootTimer = 0;
             Instantiate(Projectile, transform.position, transform.rotation);
-            Debug.Log(gameObject.name);
         }
     }
 }

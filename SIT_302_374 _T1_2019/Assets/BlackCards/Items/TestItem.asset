@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b13024ec6cb4f247b558e9218d9506d, type: 3}
-  m_Name: Waterball
+  m_Script: {fileID: 11500000, guid: ca8921f89741e904e927399ffd33475c, type: 3}
+  m_Name: TestItem
   m_EditorClassIdentifier: 
-  Name: Waterball
-  Description: water
-  Damage: 10
-  TimeActive: 30
-  Speed: 10
-  RechargeTimer: 4
+  Name: TestItem
+  Description: Testing testing 123
   Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  Material: {fileID: 2100000, guid: 45656a695afe0554997770fbb1525a97, type: 2}
+  Material: {fileID: 2100000, guid: a9a74bb5aa512484eaf5f19cd77d9c74, type: 2}
