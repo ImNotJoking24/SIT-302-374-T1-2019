@@ -6,7 +6,7 @@ using UnityEngine;
 public class GenerateTerrainHeights : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int depth;
+    public int depth = 100;
     public int width = 256;
     public int height = 256;
     public float scale = 1f;
