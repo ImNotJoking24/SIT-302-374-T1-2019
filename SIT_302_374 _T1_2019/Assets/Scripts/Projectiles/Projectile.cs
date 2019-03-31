@@ -37,7 +37,10 @@ public class Projectile : MonoBehaviour
         MeshCollider mesh = gameObject.AddComponent<MeshCollider>();
         mesh.sharedMesh = Mesh;
         gameObject.AddComponent<MeshRenderer>();
-
+        Rigidbody rigidbody = gameObject.AddComponent<Rigidbody>();
+        rigidbody.angularDrag = 0;
+        rigidbody.useGravity = false;
+        rigidbody.isKinematic = true;
     }
 
     void Update()
