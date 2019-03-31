@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="New Projectile")]
+[CreateAssetMenu(fileName ="New Projectile", menuName ="Projectile")]
 public class ProjectileScriptableObject : ScriptableObject
 {
     public string Name;
@@ -11,5 +11,6 @@ public class ProjectileScriptableObject : ScriptableObject
     public float TimeActive;
     public float Speed;
     public float RechargeTimer;
-    public PrimitiveType model; //change this when model is available
+    public Mesh Mesh;
+    public Material Material;
 }

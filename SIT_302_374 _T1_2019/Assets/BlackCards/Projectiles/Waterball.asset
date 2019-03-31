@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Waterball
   Description: water
   Damage: 10
-  TimeActive: 3
+  TimeActive: 30
   Speed: 10
-  RechargeTimer: 3
-  model: 0
+  RechargeTimer: 4
+  Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  Material: {fileID: 2100000, guid: 45656a695afe0554997770fbb1525a97, type: 2}
