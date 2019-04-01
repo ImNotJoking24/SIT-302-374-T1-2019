@@ -15,7 +15,8 @@ MonoBehaviour:
   Name: Fireball
   Description: fire
   Damage: 10
-  TimeActive: 2
+  TimeActive: 60
   Speed: 10
   RechargeTimer: 2
-  model: 0
+  Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  Material: {fileID: 2100000, guid: 45656a695afe0554997770fbb1525a97, type: 2}
