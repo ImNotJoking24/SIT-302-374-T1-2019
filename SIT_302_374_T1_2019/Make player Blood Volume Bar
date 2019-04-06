@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
  
 public class Enemy : MonoBehaviour {
-	public GameObject mSlider;//将前面创建的Slider拖到此处；
+	public GameObject mSlider;
 	private GameObject uiRoot;
 	void Start () {
 		uiRoot = GameObject.FindGameObjectWithTag ("UIRoot");
