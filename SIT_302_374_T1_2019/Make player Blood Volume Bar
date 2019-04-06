@@ -1,0 +1,26 @@
+using UnityEngine;
+using System.Collections;
+ 
+public class Enemy : MonoBehaviour {
+	public GameObject mSlider;//将前面创建的Slider拖到此处；
+	private GameObject uiRoot;
+	void Start () {
+		uiRoot = GameObject.FindGameObjectWithTag ("UIRoot");
+	}
+ 
+	void Update () {
+		Vector3 pos0 = transform.position;
+		Vector3 pos1 = Camera.main.WorldToScreenPoint (pos0);
+               
+                mSlider.transform.position = UICamera.currentCamera.ScreenToWorldPoint (pos1)  + new Vector3 (-0.4f, 0.3f, 0);
+ 
+              
+		if (Input.GetKeyDown(KeyCode.A)) {
+			mSlider.GetComponent<UISlider>().value += 0.1f;
+		}
+		
+		if (Input.GetKeyDown(KeyCode.D)) {
+			mSlider.GetComponent<UISlider>().value -= 0.1f;
+		}
+	}
+}
